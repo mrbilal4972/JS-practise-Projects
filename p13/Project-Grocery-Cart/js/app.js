@@ -5,20 +5,20 @@ let cart = document.querySelector('#cart');
 let itemCount = document.getElementById('item-count');
 let itemsTotal = itemCount.nextElementSibling;
 
-console.log(itemCount.innerText);
-let addedItem = [];
+// console.log(itemCount.innerText);
+let deleteItemBtn;
 let cartItemImg;
 let itemName;
 let itemPrize;
 let totalAmt;
 let cartItem;
 let total;
-console.log(cartItem);
+// console.log(cartItem);
 
 clearCartBtn.addEventListener('click', () => {
     cartItem = document.querySelectorAll('.cart-item');
     cartItem.forEach((e) => {
-        console.log(e.remove());
+        e.remove();
     });
 
     itemsTotal.innerText = (0).toFixed(2);
@@ -28,19 +28,21 @@ clearCartBtn.addEventListener('click', () => {
 });
 
 cartBtn.forEach((b) => {
-    b.addEventListener('click', () => {
+    b.addEventListener('click', (e) => {
         cartItemImg = b.previousElementSibling.src.split('/');
-        console.log(cartItemImg[cartItemImg.length-1])
+        // console.log(cartItemImg[cartItemImg.length-1])
         itemName = b.parentElement.nextElementSibling.firstElementChild.firstElementChild.innerText;
         itemPrize = b.parentElement.nextElementSibling.firstElementChild.firstElementChild.nextElementSibling.firstElementChild.textContent;
         total = cart.lastElementChild.previousElementSibling.lastElementChild.firstElementChild;
         totalAmt = Number(total.innerHTML) + (Number(itemPrize));
-        console.log(Number(itemPrize))
+        // console.log(Number(itemPrize))
         itemCount.innerText = ++(itemCount.innerText);
-        console.log(itemCount.innerText);
+        // console.log(itemCount.innerText);
         itemsTotal.innerText = totalAmt.toFixed(2);
         addItem();
         total.innerHTML = totalAmt.toFixed(2);
+        // deleteItem(callback);
+        // console.log(a);
     });
 });
 
@@ -48,7 +50,7 @@ cartBtn.forEach((b) => {
         cart.classList.toggle('show-cart');
     });
 
-    function addItem() {
+       function addItem() {
         cart.insertAdjacentHTML('afterbegin', `<div class="cart-item d-flex justify-content-between text-capitalize my-3">
             <img src="img-cart/${cartItemImg[cartItemImg.length-1]}" class="img-fluid rounded-circle" id="item-img" alt="">
             <div class="item-text">
@@ -61,8 +63,33 @@ cartBtn.forEach((b) => {
             <i class="fas fa-trash"></i>
             </a>
             </div>`);
+            alert('Your Item is added to Cart');
+            deleteItem();
     }
 
+    function deleteItem(){
+        // console.log('delete')
+        deleteItemBtn = document.querySelector('.cart-item-remove');
+        deleteItemBtn.addEventListener('click', (i) => {
+            let itemPrize = Number(i.target.parentElement.parentElement.querySelector('#cart-item-price').innerText);
+            itemsTotal.innerText = (Number(itemsTotal.innerText) - itemPrize).toFixed(2);
+            total.innerText = itemsTotal.innerText;
+            itemCount.innerText = Number(itemCount.innerText) - 1;
+
+            // console.log(i.target.parentElement.parentElement.remove());
+            // console.log(itemPrize);
+            // console.log(itemsTotal.innerText);
+            // console.log(itemCount.innerText);
+            // console.log(total.innerText);
+            i.target.parentElement.parentElement.remove();
+
+        });
+        // addedItem.forEach((e, i) => {
+        //     e.addEventListener('click', () => {
+        //         a = addedItem[addedItem.length-1];
+                
+        //     })
+    }
     // function deleteItem(){
     //     console.log(a);
         // addedItem.forEach((i) => {
