@@ -1,0 +1,63 @@
+:root {
+  --mainWhite: #f7f9f9;
+  --mainBrown: #a76d60;
+  --darkBrown: #601700;
+}
+body {
+  background: var(--mainWhite);
+}
+.input-group-text {
+  background: var(--mainBrown);
+  color: var(--mainWhite);
+  border-color: var(--mainBrown);
+}
+.form-control {
+  border: 0.2rem solid var(--mainBrown);
+}
+.submitBtn {
+  color: var(--darkBrown);
+  background: var(--mainWhite);
+  border: 0.2rem solid var(--darkBrown);
+  transition: all 1s ease-in-out;
+}
+.submitBtn:hover {
+  background: var(--darkBrown);
+  color: var(--mainWhite);
+}
+.fail {
+  border-color: red;
+}
+.complete {
+  border-color: green;
+}
+.feedback {
+  display: none;
+}
+.hideItem{
+  display: none;
+}
+.loading {
+  opacity: 0.3;
+  position: absolute;
+  top: 100px;
+}
+.loader{
+  /* display: none; */
+  display: flex;
+  justify-content: center;
+}
+:disabled {
+  opacity: 0.2 !important;
+}
+.showItem {
+  display: block;
+}
+.badge, .customer-name{
+  float: left;
+}
+.badge{
+  margin-top: 4px;
+}
+.list-group-item{
+  border: 1px solid black;
+}
